@@ -11,6 +11,7 @@
       <Folder Include="Domain" />
       <Folder Include="Exceptions" />
       <Folder Include="Features\Shared" />
+      <Folder Include="Features\User" />
       <Folder Include="Infrastructure" />
       <Folder Include="Middleware" />
       <Folder Include="wwwroot" />
@@ -19,6 +20,7 @@
     <ItemGroup>
       <PackageReference Include="AutoMapper" Version="11.0.1" />
       <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
+      <PackageReference Include="FluentAssertions" Version="6.7.0" />
       <PackageReference Include="FluentValidation" Version="11.0.3" />
       <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="11.0.3" />
       <PackageReference Include="MediatR" Version="10.0.1" />
@@ -29,8 +31,10 @@
         <PrivateAssets>all</PrivateAssets>
         <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       </PackageReference>
+      <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.3.0-preview-20220612-01" />
       <PackageReference Include="Npgsql" Version="6.0.4" />
       <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="6.0.4" />
+      <PackageReference Include="SpecFlow.xUnit" Version="3.10.2-beta" />
     </ItemGroup>
 
 </Project>
