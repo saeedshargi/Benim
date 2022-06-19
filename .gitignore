@@ -520,3 +520,5 @@ FodyWeavers.xsd
 /dataSources.local.xml
 
 # End of https://www.toptal.com/developers/gitignore/api/visualstudio,visualstudiocode,rider,ncrunch
+/.idea/.idea.Benim.dir/.idea
+/Benim.v3.ncrunchsolution
