@@ -1,24 +1,24 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32602.215
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{AD4A9403-2258-4A68-99A2-0954F4F2FA3C}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{BE6173C0-53F5-4D6E-AE07-2210BD793F6C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Benim", "src\Benim\Benim.csproj", "{674568AF-DE03-4F44-ABAB-570EAA00A068}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Benim", "src\Benim\Benim.csproj", "{674568AF-DE03-4F44-ABAB-570EAA00A068}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Benim.UnitTests", "test\Benim.UnitTests\Benim.UnitTests.csproj", "{523007D3-31E0-41BB-8624-029F102E3B9D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Benim.UnitTests", "test\Benim.UnitTests\Benim.UnitTests.csproj", "{523007D3-31E0-41BB-8624-029F102E3B9D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Benim.IntegrationTests", "test\Benim.IntegrationTests\Benim.IntegrationTests.csproj", "{2E9CB812-EC3E-4201-A069-82540193959C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Benim.IntegrationTests", "test\Benim.IntegrationTests\Benim.IntegrationTests.csproj", "{2E9CB812-EC3E-4201-A069-82540193959C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Benim.BehaviorTests", "test\Benim.BehaviorTests\Benim.BehaviorTests.csproj", "{DF1C1BFF-C961-4F1C-9591-EC38DC5EC27C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{674568AF-DE03-4F44-ABAB-570EAA00A068} = {AD4A9403-2258-4A68-99A2-0954F4F2FA3C}
-		{523007D3-31E0-41BB-8624-029F102E3B9D} = {BE6173C0-53F5-4D6E-AE07-2210BD793F6C}
-		{2E9CB812-EC3E-4201-A069-82540193959C} = {BE6173C0-53F5-4D6E-AE07-2210BD793F6C}
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{674568AF-DE03-4F44-ABAB-570EAA00A068}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -33,5 +33,21 @@ Global
 		{2E9CB812-EC3E-4201-A069-82540193959C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2E9CB812-EC3E-4201-A069-82540193959C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2E9CB812-EC3E-4201-A069-82540193959C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DF1C1BFF-C961-4F1C-9591-EC38DC5EC27C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DF1C1BFF-C961-4F1C-9591-EC38DC5EC27C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DF1C1BFF-C961-4F1C-9591-EC38DC5EC27C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DF1C1BFF-C961-4F1C-9591-EC38DC5EC27C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{674568AF-DE03-4F44-ABAB-570EAA00A068} = {AD4A9403-2258-4A68-99A2-0954F4F2FA3C}
+		{523007D3-31E0-41BB-8624-029F102E3B9D} = {BE6173C0-53F5-4D6E-AE07-2210BD793F6C}
+		{2E9CB812-EC3E-4201-A069-82540193959C} = {BE6173C0-53F5-4D6E-AE07-2210BD793F6C}
+		{DF1C1BFF-C961-4F1C-9591-EC38DC5EC27C} = {BE6173C0-53F5-4D6E-AE07-2210BD793F6C}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4B1525A8-5602-4155-8C44-8E1B916F7CAC}
 	EndGlobalSection
 EndGlobal

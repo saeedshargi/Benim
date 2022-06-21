@@ -7,12 +7,19 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <Folder Include="Behaviours" />
+      <Compile Remove="Middleware\**" />
+      <Content Remove="Middleware\**" />
+      <EmbeddedResource Remove="Middleware\**" />
+      <None Remove="Middleware\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Behaviors\" />
       <Folder Include="Domain" />
       <Folder Include="Exceptions" />
       <Folder Include="Features\Shared" />
+      <Folder Include="Features\User" />
       <Folder Include="Infrastructure" />
-      <Folder Include="Middleware" />
       <Folder Include="wwwroot" />
     </ItemGroup>
 
@@ -29,8 +36,9 @@
         <PrivateAssets>all</PrivateAssets>
         <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       </PackageReference>
-      <PackageReference Include="Npgsql" Version="6.0.4" />
-      <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="6.0.4" />
+      <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.2.0" />
+      <PackageReference Include="Npgsql" Version="6.0.5" />
+      <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="6.0.5" />
     </ItemGroup>
 
 </Project>
