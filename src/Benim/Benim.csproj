@@ -18,7 +18,12 @@
       <Folder Include="Domain" />
       <Folder Include="Exceptions" />
       <Folder Include="Features\Shared" />
-      <Folder Include="Features\User" />
+      <Folder Include="Features\User\Commands\" />
+      <Folder Include="Features\User\Events\" />
+      <Folder Include="Features\User\Handlers\" />
+      <Folder Include="Features\User\Mappings\" />
+      <Folder Include="Features\User\Validators\" />
+      <Folder Include="Features\User\Queries\" />
       <Folder Include="Infrastructure" />
       <Folder Include="wwwroot" />
     </ItemGroup>
@@ -26,8 +31,8 @@
     <ItemGroup>
       <PackageReference Include="AutoMapper" Version="11.0.1" />
       <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
-      <PackageReference Include="FluentValidation" Version="11.0.3" />
-      <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="11.0.3" />
+      <PackageReference Include="FluentValidation" Version="11.1.0" />
+      <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="11.1.0" />
       <PackageReference Include="MediatR" Version="10.0.1" />
       <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="10.0.1" />
       <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.6" />
