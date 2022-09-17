@@ -1,4 +1,4 @@
-﻿namespace Benim.Infrastructure;
+﻿namespace Benim.Infrastructure.Interfaces;
 
 public interface ICommandRepository<T> where T : class
 {

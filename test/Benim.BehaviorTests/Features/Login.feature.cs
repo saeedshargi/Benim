@@ -84,9 +84,9 @@ namespace Benim.BehaviorTests.Features
         [Xunit.TraitAttribute("FeatureTitle", "Login to application")]
         [Xunit.TraitAttribute("Description", "Login with invalid user info")]
         [Xunit.InlineDataAttribute("", "", "Invalid UserName Or Password!", new string[0])]
-        [Xunit.InlineDataAttribute("\'admin\'", "", "Invalid Password!", new string[0])]
-        [Xunit.InlineDataAttribute("", "\'1234\'", "Invalid UserName!", new string[0])]
-        [Xunit.InlineDataAttribute("\'user\'", "\'1234\'", "Invalid UserName Or Password!", new string[0])]
+        [Xunit.InlineDataAttribute("admin", "", "Invalid Password!", new string[0])]
+        [Xunit.InlineDataAttribute("", "1234", "Invalid UserName!", new string[0])]
+        [Xunit.InlineDataAttribute("user", "1234", "Invalid UserName Or Password!", new string[0])]
         public void LoginWithInvalidUserInfo(string userName, string password, string message, string[] exampleTags)
         {
             string[] tagsOfScenario = exampleTags;
@@ -121,7 +121,7 @@ this.ScenarioInitialize(scenarioInfo);
         [Xunit.SkippableTheoryAttribute(DisplayName="Login with valid user info")]
         [Xunit.TraitAttribute("FeatureTitle", "Login to application")]
         [Xunit.TraitAttribute("Description", "Login with valid user info")]
-        [Xunit.InlineDataAttribute("\'admin\'", "\'Admin@1234\'", new string[0])]
+        [Xunit.InlineDataAttribute("admin", "Admin@1234", new string[0])]
         public void LoginWithValidUserInfo(string userName, string password, string[] exampleTags)
         {
             string[] tagsOfScenario = exampleTags;
@@ -140,8 +140,7 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
 #line 18
-    testRunner.Given("I have entered valid UserName: \'userName\' And Password: \'password\' at the Login p" +
-                        "age", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+    testRunner.Given(string.Format("I have entered valid UserName: \'{0}\' And Password: \'{1}\' at the Login page", userName, password), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 19
     testRunner.When("I click login button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
