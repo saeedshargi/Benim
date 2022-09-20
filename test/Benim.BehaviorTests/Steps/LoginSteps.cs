@@ -3,7 +3,7 @@ using Benim.Features.User.Handlers;
 using TechTalk.SpecFlow;
 using Xunit;
 
-namespace Benim.BehaviorTests.Steps
+namespace Benim.AcceptanceTests.Steps
 {
     [Binding]
     public class LoginSteps

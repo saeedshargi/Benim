@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace Benim.BehaviorTests.Features
+namespace Benim.AcceptanceTests.Features
 {
     using TechTalk.SpecFlow;
     using System;
@@ -31,7 +31,7 @@ namespace Benim.BehaviorTests.Features
 #line 1 "Login.feature"
 #line hidden
         
-        public LoginToApplicationFeature(LoginToApplicationFeature.FixtureData fixtureData, Benim_BehaviorTests_XUnitAssemblyFixture assemblyFixture, Xunit.Abstractions.ITestOutputHelper testOutputHelper)
+        public LoginToApplicationFeature(LoginToApplicationFeature.FixtureData fixtureData, Benim_AcceptanceTests_XUnitAssemblyFixture assemblyFixture, Xunit.Abstractions.ITestOutputHelper testOutputHelper)
         {
             this._testOutputHelper = testOutputHelper;
             this.TestInitialize();
