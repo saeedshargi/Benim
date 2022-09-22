@@ -1,6 +1,7 @@
-using Benim.Domain;
+using Benim.Domain.Interfaces;
+using Benim.Extensions;
 using Benim.Infrastructure.Data;
-using Microsoft.AspNetCore.Authentication.Cookies;
+using Benim.Infrastructure.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -19,15 +20,16 @@ builder.Services.AddDbContext<BenimContext>(options =>
     options.UseSqlite($"Data Source = {dbPath}");
 });
 
+builder.Services.AddJwtConfiguration(builder.Configuration);
+
 builder.Services.AddIdentity<IdentityUser<int>, IdentityRole<int>>(options => { options.SignIn.RequireConfirmedAccount = true; })
     .AddEntityFrameworkStores<BenimContext>()
     .AddDefaultTokenProviders();
 
-builder.Services.AddAuthentication(option =>
-{
-    option.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-}).AddCookie();
+builder.Services.AddAuthenticationWithJwt(builder.Configuration);
 
+
+builder.Services.AddScoped<IUserService, UserService>();
 
 var app = builder.Build();
 
@@ -43,5 +45,7 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
+
+SeedData.AddDefaultData(app);
 
 app.Run();
