@@ -1,4 +1,4 @@
-﻿namespace Benim.Domain;
+﻿namespace Benim.Domain.Common;
 
 public class BaseEntity
 {

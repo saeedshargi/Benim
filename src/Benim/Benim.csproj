@@ -16,6 +16,7 @@
     <ItemGroup>
       <Folder Include="Behaviors\" />
       <Folder Include="Domain\Interfaces\" />
+      <Folder Include="Domain\Entities\" />
       <Folder Include="Exceptions" />
       <Folder Include="Features\Shared" />
       <Folder Include="Features\User\Commands\" />
