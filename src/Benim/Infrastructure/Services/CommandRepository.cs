@@ -1,4 +1,4 @@
-﻿using Benim.Infrastructure.Interfaces;
+﻿using Benim.Domain.Interfaces;
 
 namespace Benim.Infrastructure.Services;
 
