@@ -13,17 +13,11 @@ public sealed class Role<T>:IdentityRole<int>
         IsActive = true;
         IsDeleted = false;
     }
-
-    public Role()
-    {
-        
-    }
-
     public string? Description { get;}
     public bool IsActive { get; }
     public bool IsDeleted { get;}
 
-    public Role<T> CreateRole(string name, string? description)
+    public static Role<T> CreateRole(string name, string? description)
     {
         return new Role<T>(name, description);
     }

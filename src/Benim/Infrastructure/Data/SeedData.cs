@@ -34,8 +34,8 @@ public static class SeedData
     private static void AddDefaultRoles(BenimContext context)
     {
         if (context.Roles.Any()) return;
-        context.Roles.Add(new Role<int>().CreateRole("Admin", "Administrator role has access to all permissions."));
-        context.Roles.Add(new Role<int>().CreateRole("User", "User role has limited permissions."));
+        context.Roles.Add(Role<int>.CreateRole("Admin", "Administrator role has access to all permissions."));
+        context.Roles.Add(Role<int>.CreateRole("User", "User role has limited permissions."));
         context.SaveChanges();
     }
 

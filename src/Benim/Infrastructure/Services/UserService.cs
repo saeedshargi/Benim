@@ -38,7 +38,7 @@ public class UserService: IUserService
             throw new BusinessApplicationException("Duplicate User", "A user with this user name already exist!");
         }
 
-        var user = new User<int>().CreateUser(registerUser.UserName,registerUser.Password,registerUser.FirstName,registerUser.LastName,registerUser.BirthDate,registerUser.Email);
+        var user = User<int>.CreateUser(registerUser.UserName,registerUser.Password,registerUser.FirstName,registerUser.LastName,registerUser.BirthDate,registerUser.Email);
 
         var result = await _userManager.CreateAsync(user, registerUser.Password);
         if (!result.Succeeded) return 0;
