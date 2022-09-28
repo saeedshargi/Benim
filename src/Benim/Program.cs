@@ -1,3 +1,4 @@
+using Benim.Domain.Entities;
 using Benim.Domain.Interfaces;
 using Benim.Extensions;
 using Benim.Infrastructure.Data;
@@ -22,7 +23,7 @@ builder.Services.AddDbContext<BenimContext>(options =>
 
 builder.Services.AddJwtConfiguration(builder.Configuration);
 
-builder.Services.AddIdentity<IdentityUser<int>, IdentityRole<int>>(options => { options.SignIn.RequireConfirmedAccount = true; })
+builder.Services.AddIdentity<User<int>, Role<int>>(options => { options.SignIn.RequireConfirmedAccount = true; })
     .AddEntityFrameworkStores<BenimContext>()
     .AddDefaultTokenProviders();
 

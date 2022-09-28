@@ -1,6 +1,6 @@
-﻿using Benim.Domain.Interfaces;
+﻿using Benim.Domain.Entities;
+using Benim.Domain.Interfaces;
 using Benim.Features.User.Commands;
-using Microsoft.AspNetCore.Identity;
 
 namespace Benim.Infrastructure.Data;
 
@@ -34,8 +34,8 @@ public static class SeedData
     private static void AddDefaultRoles(BenimContext context)
     {
         if (context.Roles.Any()) return;
-        context.Roles.Add(new IdentityRole<int>("Admin"));
-        context.Roles.Add(new IdentityRole<int>("User"));
+        context.Roles.Add(new Role<int>().CreateRole("Admin", "Administrator role has access to all permissions."));
+        context.Roles.Add(new Role<int>().CreateRole("User", "User role has limited permissions."));
         context.SaveChanges();
     }
 
@@ -45,7 +45,10 @@ public static class SeedData
         {
             UserName = "admin",
             Password = "Admin@1234",
-            ConfirmPassword = "Admin@1234"
+            ConfirmPassword = "Admin@1234",
+            FirstName = "Admin",
+            LastName = "",
+            Email = "admin@saeidsharghi.com"
         };
 
         userService.RegisterUserAsync(user);
