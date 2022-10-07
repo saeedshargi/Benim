@@ -13,7 +13,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Benim.UnitTests", "test\Ben
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Benim.IntegrationTests", "test\Benim.IntegrationTests\Benim.IntegrationTests.csproj", "{2E9CB812-EC3E-4201-A069-82540193959C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Benim.AcceptanceTests", "test\Benim.BehaviorTests\Benim.AcceptanceTests.csproj", "{DF1C1BFF-C961-4F1C-9591-EC38DC5EC27C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Benim.AcceptanceTests", "test\Benim.AcceptanceTests\Benim.AcceptanceTests.csproj", "{DF1C1BFF-C961-4F1C-9591-EC38DC5EC27C}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Benim.FunctionalTests", "test\Benim.FunctionalTests\Benim.FunctionalTests.csproj", "{D7AD5470-F3CF-468B-A784-2A87FB2C277A}"
 EndProject
