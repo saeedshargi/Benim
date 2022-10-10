@@ -4,17 +4,27 @@ public abstract class ValueObject: IEquatable<ValueObject>
 {
     protected abstract IEnumerable<object> GetValues();
 
-    protected static bool EqualOperator(ValueObject left, ValueObject right)
+    private static bool EqualOperator(ValueObject left, ValueObject right)
     {
         if (ReferenceEquals(left,null) ^ ReferenceEquals(right,null))
         {
             return false;
         }
 
-        return ReferenceEquals(left, right) || left.Equals(right);
+        if ((left is null && right is not null) || (left is not null && right is null))
+        {
+            return false;
+        }
+
+        if (left is null && right is null)
+        {
+            return true;
+        }
+
+        return ReferenceEquals(left, right) || left!.Equals(right);
     }
 
-    protected static bool NotEqualOperator(ValueObject left, ValueObject right)
+    private static bool NotEqualOperator(ValueObject left, ValueObject right)
     {
         return !EqualOperator(left, right);
     }

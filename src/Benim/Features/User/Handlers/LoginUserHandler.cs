@@ -35,6 +35,6 @@ public class LoginUserHandler: ICommandHandler<LoginUserCommand,LoginResponse>
             return result;
         }
 
-        return result;
+        return await Task.FromResult(result);
     }
 }
