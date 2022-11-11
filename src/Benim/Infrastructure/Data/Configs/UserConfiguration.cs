@@ -4,9 +4,9 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Benim.Infrastructure.Data.Configs;
 
-public class UserConfiguration: IEntityTypeConfiguration<User<int>>
+public class UserConfiguration: IEntityTypeConfiguration<User>
 {
-    public void Configure(EntityTypeBuilder<User<int>> builder)
+    public void Configure(EntityTypeBuilder<User> builder)
     {
         builder.ToTable("Users");
         builder.HasKey(x => x.Id);
@@ -15,6 +15,8 @@ public class UserConfiguration: IEntityTypeConfiguration<User<int>>
         builder.Property(x => x.IsActive).IsRequired();
         builder.Property(x => x.IsDeleted).IsRequired();
         builder.Property(x => x.BirthDate).IsRequired(false);
+        builder.Property(x => x.RefreshToken).IsRequired(false).HasMaxLength(512);
+        builder.Property(x => x.RefreshTokenExpirationDate).IsRequired(false);
 
         builder.HasIndex(x => new {x.UserName, x.Email});
     }

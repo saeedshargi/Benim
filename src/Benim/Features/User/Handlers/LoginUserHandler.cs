@@ -1,40 +1,100 @@
-﻿using Benim.Features.Shared;
+﻿using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Security.Cryptography;
+using System.Text;
+using Benim.Domain.Common;
+using Benim.Domain.ValueObjects;
+using Benim.Features.Shared;
 using Benim.Features.User.Commands;
+using Benim.Models;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.Options;
+using Microsoft.IdentityModel.Tokens;
 
 namespace Benim.Features.User.Handlers;
 
-public class LoginUserHandler: ICommandHandler<LoginUserCommand,LoginResponse>
+public class LoginUserHandler: ICommandHandler<LoginUserCommand,Result<LoginResponse>>
 {
-    public async Task<LoginResponse> Handle(LoginUserCommand request, CancellationToken cancellationToken)
+    private readonly UserManager<Domain.Entities.User> _userManager;
+    private readonly SignInManager<Domain.Entities.User> _signInManager;
+    private readonly IOptions<JwtConfiguration> _jwtOptions;
+
+    public LoginUserHandler(UserManager<Domain.Entities.User> userManager, 
+        SignInManager<Domain.Entities.User> signInManager, 
+        IOptions<JwtConfiguration> jwtOptions)
     {
-        var result = new LoginResponse();
-        var userName = request.UserName;
-        var password = request.Password;
+        _userManager = userManager;
+        _signInManager = signInManager;
+        _jwtOptions = jwtOptions;
+    }
 
-        if (string.IsNullOrEmpty(userName) && string.IsNullOrEmpty(password))
+    public async Task<Result<LoginResponse>> Handle(LoginUserCommand request, CancellationToken cancellationToken)
+    {
+        var existUser = await _userManager.FindByNameAsync(request.UserName);
+        if (existUser is null)
         {
-            result.AddError("Invalid UserName Or Password!");
-            return result;
+            return Result<LoginResponse>.Failure(new Error("User.NotFound","There is no user with this info."));
         }
 
-        if (string.IsNullOrEmpty(userName))
+        var canLogin = await _signInManager.PasswordSignInAsync(request.UserName,request.Password,request.RememberMe,false);
+        if (!canLogin.Succeeded)
         {
-            result.AddError("Invalid UserName!");
-            return result;
+            return Result<LoginResponse>.Failure(new Error("User.Invalid","Invalid password!"));
         }
 
-        if (string.IsNullOrEmpty(password))
-        {
-            result.AddError("Invalid Password!");
-            return result;
-        }
+        var jwtToken = await GetJwtTokenAsync(existUser);
+        var refreshToken = GetRefreshTokenAsync("");
+        existUser.UpdateRefreshToken(refreshToken.Token,refreshToken.Expires);
+        await _userManager.UpdateAsync(existUser);
 
-        if (userName != "admin" && password != "Admin@1234")
-        {
-            result.AddError("Invalid UserName Or Password!");
-            return result;
-        }
+        var token = new JwtSecurityTokenHandler().WriteToken(jwtToken);
+        var loginResponse = new LoginResponse(existUser.UserName, $"{existUser.FirstName} {existUser.LastName}",
+            existUser.Email, token, refreshToken.Token, refreshToken.Expires);
+        return Result<LoginResponse>.Success(loginResponse);
+    }
 
-        return await Task.FromResult(result);
+    private async Task<JwtSecurityToken> GetJwtTokenAsync(Domain.Entities.User user)
+    {
+        var jwtSettings = _jwtOptions.Value;
+        var userClaims = await _userManager.GetClaimsAsync(user);
+        var roles = await _userManager.GetRolesAsync(user);
+        var roleClaims = roles.Select(t => new Claim("roles", t)).ToList();
+        var claims = new[]
+            {
+                new Claim(JwtRegisteredClaimNames.Sub, user.UserName),
+                new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
+                new Claim(JwtRegisteredClaimNames.Email, user.Email),
+                new Claim("uid", user.Id.ToString())
+            }
+            .Union(userClaims)
+            .Union(roleClaims);
+
+        var symmetricSecurityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSettings.IssuerSigningKey));
+        var signingCredentials = new SigningCredentials(symmetricSecurityKey, SecurityAlgorithms.HmacSha256);
+        var jwtSecurityToken = new JwtSecurityToken(
+            issuer: jwtSettings.ValidIssuer,
+            audience: jwtSettings.ValidAudience,
+            claims: claims,
+            expires: DateTime.UtcNow.AddMinutes(jwtSettings.DurationInMinutes),
+            signingCredentials: signingCredentials);
+        return jwtSecurityToken;
+    }
+    
+    private RefreshToken GetRefreshTokenAsync(string ipAddress)
+    {
+        var jwtSettings = _jwtOptions.Value;
+        return new RefreshToken
+        {
+            Token = RandomTokenString(),
+            Expires = DateTime.UtcNow.AddDays(jwtSettings.RefreshTokenDurationInDay),
+            Created = DateTime.UtcNow,
+            CreatedByIp = ipAddress
+        };
+    }
+    
+    private string RandomTokenString()
+    {
+        var randomBytes = RandomNumberGenerator.GetBytes(128);
+        return BitConverter.ToString(randomBytes).Replace("-", "");
     }
 }

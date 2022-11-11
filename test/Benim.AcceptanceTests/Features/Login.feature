@@ -1,6 +1,6 @@
 ﻿Feature: Login to application
     As a user
-    I want to login to appllication with my user info
+    I want to login to application with my user info
     
 Scenario Outline: Login with invalid user info
     Given I have entered invalid UserName: '<userName>' And Password: '<password>' at the Login page

@@ -2,7 +2,7 @@
 
 namespace Benim.Domain.Entities;
 
-public sealed class Role<T>:IdentityRole<int>
+public sealed class Role:IdentityRole<int>
 {
     private Role(string name,string? description)
     {
@@ -13,12 +13,18 @@ public sealed class Role<T>:IdentityRole<int>
         IsActive = true;
         IsDeleted = false;
     }
+
+    public Role()
+    {
+        
+    }
+    
     public string? Description { get;}
     public bool IsActive { get; }
     public bool IsDeleted { get;}
 
-    public static Role<T> CreateRole(string name, string? description)
+    public static Role CreateRole(string name, string? description)
     {
-        return new Role<T>(name, description);
+        return new Role(name, description);
     }
 }

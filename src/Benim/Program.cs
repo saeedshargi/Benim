@@ -23,7 +23,7 @@ builder.Services.AddDbContext<BenimContext>(options =>
 
 builder.Services.AddJwtConfiguration(builder.Configuration);
 
-builder.Services.AddIdentity<User<int>, Role<int>>(options => { options.SignIn.RequireConfirmedAccount = true; })
+builder.Services.AddIdentity<User, Role>(options => { options.SignIn.RequireConfirmedAccount = true; })
     .AddEntityFrameworkStores<BenimContext>()
     .AddDefaultTokenProviders();
 

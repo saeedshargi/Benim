@@ -4,9 +4,9 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Benim.Infrastructure.Data.Configs;
 
-public class RoleConfiguration: IEntityTypeConfiguration<Role<int>>
+public class RoleConfiguration: IEntityTypeConfiguration<Role>
 {
-    public void Configure(EntityTypeBuilder<Role<int>> builder)
+    public void Configure(EntityTypeBuilder<Role> builder)
     {
         builder.ToTable("Roles");
         builder.HasKey(x => x.Id);

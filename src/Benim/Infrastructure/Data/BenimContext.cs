@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Benim.Infrastructure.Data;
 
-public class BenimContext : IdentityDbContext<User<int>,Role<int>,int>
+public class BenimContext : IdentityDbContext<User,Role,int>
 {
     public BenimContext(DbContextOptions<BenimContext> options) : base(options)
     {

@@ -12,15 +12,15 @@ namespace Benim.Infrastructure.Services;
 public class UserService: IUserService
 {
     private readonly BenimContext _context;
-    private readonly UserManager<User<int>> _userManager;
-    private readonly RoleManager<Role<int>> _roleManager;
-    private readonly SignInManager<User<int>> _signInManager;
+    private readonly UserManager<User> _userManager;
+    private readonly RoleManager<Role> _roleManager;
+    private readonly SignInManager<User> _signInManager;
     private readonly JwtConfiguration _jwtConfiguration;
 
     public UserService(BenimContext context, 
-        UserManager<User<int>> userManager, 
-        RoleManager<Role<int>> roleManager, 
-        SignInManager<User<int>> signInManager, 
+        UserManager<User> userManager, 
+        RoleManager<Role> roleManager, 
+        SignInManager<User> signInManager, 
         IOptions<JwtConfiguration> jwtConfiguration)
     {
         _context = context;
@@ -38,7 +38,7 @@ public class UserService: IUserService
             throw new BusinessApplicationException("Duplicate User", "A user with this user name already exist!");
         }
 
-        var user = User<int>.CreateUser(registerUser.UserName,registerUser.Password,registerUser.FirstName,registerUser.LastName,registerUser.BirthDate,registerUser.Email);
+        var user = User.CreateUser(registerUser.UserName,registerUser.Password,registerUser.FirstName,registerUser.LastName,registerUser.BirthDate,registerUser.Email);
 
         var result = await _userManager.CreateAsync(user, registerUser.Password);
         if (!result.Succeeded) return 0;
