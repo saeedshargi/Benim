@@ -1,5 +1,4 @@
 ﻿using Benim.Models;
-using Microsoft.Extensions.Configuration;
 
 namespace Benim.Extensions;
 

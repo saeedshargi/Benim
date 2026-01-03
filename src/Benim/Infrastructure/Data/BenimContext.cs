@@ -1,5 +1,4 @@
 ﻿using System.Reflection;
-using Benim.Domain;
 using Benim.Domain.Entities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
